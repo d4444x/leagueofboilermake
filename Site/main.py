@@ -3,6 +3,7 @@ from flask import Flask, render_template, send_from_directory, request, session,
 #import leagueofdata
 from bs4 import BeautifulSoup
 import seleen
+import getProb
 
 app = Flask(__name__)
 app.config.update(DEBUG = True,)
@@ -32,10 +33,23 @@ def currentPost():
         start = str(champ).find('<span') + 6
         end = str(champ).find('(',start)
         champs.append(str(champ)[start:end].strip())
+    for i in range(0,len(champs)):
+        champs[i] = champs[i].replace(' ','')
+        champs[i] = champs[i].replace('\'','')
+        champs[i] = champs[i].replace('.','')
     #return "Blue: " + str(champs[:5]) + "<br>Purple: " + str(champs[5:])
-    return str(soup.find('div',{'class':'team-1'}))
-    #Call team calc here
-    #return render_template('results.html',results="")
+    team1 = soup.find('div',{'class':'team-1'})
+    blueLinks = []
+    for row in team1.find_all('td',{'class':'name'}):
+        blueLinks.append('<a href="' + str(row.find('a')['href']) + '">' + str(row.find('span').text) + '</a>')
+    
+    team2 = soup.find('div',{'class':'team-2'})
+    purpleLinks = []
+    for row in team2.find_all('td',{'class':'name'}):
+        purpleLinks.append('<a href="' + str(row.find('a')['href']) + '">' + str(row.find('span').text) + '</a>')
+    blue = round(getProb.getProbability([champs[:5],champs[5:]]))
+    purple=100.00-blue
+    return render_template('results.html',blueLinks=enumerate(blueLinks),blueChamps=champs[:5],purpleLinks=enumerate(purpleLinks),purpleChamps=champs[5:],blue=blue,purple=purple)
 
 @app.route('/simulate/')
 def simulate():
@@ -62,9 +76,10 @@ def simulatePost():
         team1.append(request.form['champ'+str(i)])
         team2.append(request.form['champ'+str(i)+"2"])
 
-    #Call the team calc here
-
-    return render_template('results.html',results="")
+    blue = 60
+    blue = round(getProb.getProbability([champs[:5],champs[5:]]))
+    purple=100-blue
+    return render_template('results.html',blueLinks=enumerate(team1),blueChamps=team1,purpleLinks=enumerate(team2),purpleChamps=team2,blue=blue,purple=purple)
 
 @app.route('/about/')
 def about():
