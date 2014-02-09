@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, send_from_directory, request, session, redirect, url_for
-import leagueofdata
+#import leagueofdata
 from bs4 import BeautifulSoup
 import seleen
 
