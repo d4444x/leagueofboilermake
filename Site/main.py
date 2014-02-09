@@ -23,40 +23,16 @@ def currentPost():
     summoner = request.form['summoner']
     if not summoner:
         return render_template('leaguecurrent.html',error="Please provide a summoner")
-    page = seleen.lolKing(summoner, seleen.getBrowser())
+    page = open('tayler.txt','r').read()
+    #page = seleen.lolKing(summoner, seleen.getBrowser())
     soup = BeautifulSoup(page)
-    bluetxt = soup.find('table',{'class':'blue-team'})
-    bluelinks = bluetxt.find_all('a')
-    champlinks = []
-    for link in bluelinks:
-        if '/champions/' in str(link):
-            champlinks.append(str(link))
-    blueChamps = []
-    for link in champlinks:
-        startp = link.find('/champions/') + 11
-        endp = link.find('"',startp)
-        if link[startp:endp] not in blueChamps:
-            blueChamps.append(link[startp:endp])
-
-    purpletxt = soup.find('table',{'class':'purple-team'})
-    purplelinks = purpletxt.find_all('a')
-    champlinks = []
-    for link in purplelinks:
-        if '/champions/' in str(link):
-            champlinks.append(str(link))
-    purpleChamps = []
-    for link in champlinks:
-        startp = link.find('/champions/') + 11
-        endp = link.find('"',startp)
-        if link[startp:endp] not in purpleChamps:
-            purpleChamps.append(link[startp:endp])
-    if '' in blueChamps:
-        blueChamps.remove('')
-        blueChamps.append('Yasuo')
-    if '' in purpleChamps:
-        purpleChamps.remove('')
-        purpleChamps.append('Yasuo')
-    return str(blueChamps) + str(purpleChamps)
+    champrows = soup.find_all('td',{'class':'champion'})
+    champs = []
+    for champ in champrows:
+        start = str(champ).find('<span') + 6
+        end = str(champ).find('(',start)
+        champs.append(str(champ)[start:end].strip())
+    return "Blue: " + str(champs[:5]) + "<br>Purple: " + str(champs[5:])
 
     #Call team calc here
     #return render_template('results.html',results="")
