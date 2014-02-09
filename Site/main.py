@@ -26,7 +26,9 @@ def currentPost():
         return render_template('leaguecurrent.html',error="Please provide a summoner")
     #page = open('tayler.txt','r').read()
     page = seleen.lolKing(summoner, seleen.getBrowser())
-    soup = BeautifulSoup(page)
+    if(page==-1):
+        return render_template("notFound.html")
+        soup = BeautifulSoup(page)
     champrows = soup.find_all('td',{'class':'champion'})
     champs = []
     for champ in champrows:
