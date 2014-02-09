@@ -6,7 +6,7 @@ import seleen
 import getProb
 
 app = Flask(__name__)
-app.config.update(DEBUG = True,)
+app.config.update(DEBUG = False,)
 #app.secret_key = 'A1Zz98j/3yX R~XHH!?1N!AZX/,?RT'  #Temp secret
 
 
