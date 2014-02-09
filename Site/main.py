@@ -41,6 +41,10 @@ def currentPost():
 def simulate():
     return render_template('simulate.html')
 
+@app.route('/results/')
+def simulae():
+    return render_template('results.html')
+
 @app.route('/simulate/',methods=['POST'])
 def simulatePost():
     team1 = []

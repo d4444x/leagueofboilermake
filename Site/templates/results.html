@@ -13,6 +13,11 @@
       body {
         padding-top: 70px;
       }
+
+      .champion-thumb > img {
+        border-top: 4px;
+      }
+
       .footer {
         border-top: 1px solid #eee;
         margin-top: 40px;
@@ -125,17 +130,58 @@
       <!-- Site footer -->
       <h1 class="page-header">Match win chances<br></h1>
       <div class="row">
-        <div class="col-md-6">
-          <h3>Team 1<br></h3>
-          <hr>
-          <p><b>Blue Side Win Chance: </b>75%<br></p>
-          <p><b>Purple Side Win Chance: </b>30%<br></p>
+        <div class="col-md-4">
+          <h3 class="text-center">Team 1<br></h3>
+          <ul class="list-group">
+            <li class="list-group-item">
+              Marrowgar01
+              <img class="pull-right champion-thumb" src="{{url_for('static', filename='images/48px-LeonaSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item">
+              Marrowgar01
+              <img class="pull-right champion-thumb" src="{{url_for('static', filename='images/48px-SkarnerSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item">
+              Marrowgar01
+              <img class="pull-right champion-thumb" src="{{url_for('static', filename='images/48px-LissandraSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item">
+              Marrowgar01
+              <img class="pull-right champion-thumb" src="{{url_for('static', filename='images/48px-FiddlesticksSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item">
+              Marrowgar01
+              <img class="pull-right champion-thumb" src="{{url_for('static', filename='images/48px-JinxSquare.png')}}" width="30" height="30"></img>
+            </li>
+          </ul>
         </div>
-        <div class="col-md-6">
-          <h3>Team 2<br></h3>
-          <hr>
-          <p><b>Purple Side Win Chance:</b> 25%<br></p>
-          <p><b>Blue Side Win Chance:</b> 70%<br></p>
+        <div class="col-md-4">
+          <canvas id="meter-canvas" height="100"></canvas>
+        </div>
+        <div class="col-md-4">
+          <h3 class="text-center">Team 2<br></h3>
+          <ul class="list-group">
+            <li class="list-group-item" style="height: 42px;">
+              <img class="pull-left champion-thumb" src="{{url_for('static', filename='images/48px-LeonaSquare.png')}}" width="30" height="30"></img>
+              <span class="pull-right">Marrowgar01</span>
+            </li>
+            <li class="list-group-item" style="height: 42px;">
+              <span class="pull-right">Marrowgar01</span>
+              <img class="pull-left champion-thumb" src="{{url_for('static', filename='images/48px-SkarnerSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item" style="height: 42px;">
+              <span class="pull-right">Marrowgar01</span>
+              <img class="pull-left champion-thumb" src="{{url_for('static', filename='images/48px-LissandraSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item" style="height: 42px;">
+              <span class="pull-right">Marrowgar01</span>
+              <img class="pull-left champion-thumb" src="{{url_for('static', filename='images/48px-FiddlesticksSquare.png')}}" width="30" height="30"></img>
+            </li>
+            <li class="list-group-item" style="height: 42px;">
+              <span class="pull-right">Marrowgar01</span>
+              <img class="pull-left champion-thumb" src="{{url_for('static', filename='images/48px-JinxSquare.png')}}" width="30" height="30"></img>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="footer">
