@@ -32,8 +32,8 @@ def currentPost():
         start = str(champ).find('<span') + 6
         end = str(champ).find('(',start)
         champs.append(str(champ)[start:end].strip())
-    return "Blue: " + str(champs[:5]) + "<br>Purple: " + str(champs[5:])
-
+    #return "Blue: " + str(champs[:5]) + "<br>Purple: " + str(champs[5:])
+    return str(soup.find('div',{'class':'team-1'}))
     #Call team calc here
     #return render_template('results.html',results="")
 
@@ -68,5 +68,5 @@ def about():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 80))
+    port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
