@@ -28,7 +28,7 @@ def currentPost():
     page = seleen.lolKing(summoner, seleen.getBrowser())
     if(page==-1):
         return render_template("notFound.html")
-        soup = BeautifulSoup(page)
+    soup = BeautifulSoup(page)
     champrows = soup.find_all('td',{'class':'champion'})
     champs = []
     for champ in champrows:
