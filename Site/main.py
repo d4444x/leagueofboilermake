@@ -50,6 +50,12 @@ def currentPost():
         endp = link.find('"',startp)
         if link[startp:endp] not in purpleChamps:
             purpleChamps.append(link[startp:endp])
+    if '' in blueChamps:
+        blueChamps.remove('')
+        blueChamps.append('Yasuo')
+    if '' in purpleChamps:
+        purpleChamps.remove('')
+        purpleChamps.append('Yasuo')
     return str(blueChamps) + str(purpleChamps)
 
     #Call team calc here
